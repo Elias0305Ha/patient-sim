@@ -1,0 +1,21 @@
+# Secrets — never commit
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Logs from call runs
+*.log
+
+# The assessment brief itself — not ours to republish in a public repo
+Pretty Good AI — AI Engineering Challenge.pdf
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Note: results/ is intentionally NOT ignored.
+# Transcripts and recordings are graded deliverables.
