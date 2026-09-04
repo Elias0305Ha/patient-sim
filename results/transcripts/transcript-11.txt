@@ -1,0 +1,27 @@
+scenario: post-op-imaging
+call_sid: CAd98d3baa5198fc13a0339d84a0c5ffb5
+
+[0:03] AGENT: This call may be recorded for quality and training purposes.
+[0:07] AGENT: Para Español, oprima el 2.
+[0:09] AGENT: Thank you for calling Pivot Point Orthopedics.
+[0:17] PATIENT: Uh, I actually already had surgery there, so this is for a six week post-op follow-up, not a new profile. My name is Elias Hakenso.
+[0:17] AGENT: Would you like to create a demo patient profile? I just need your first and last name to get started.
+[0:29] AGENT: Your patient profile is set up and your date of birth is July 4, 2000. How can I help you today?
+[0:38] PATIENT: Uh, sorry, that date of birth isn’t right—mine is May 3, 2003.
+
+I’m calling to book my six week post-op follow-up for my right knee, and yeah, it’s still catching when I straighten it, so I wanted to ask if the MRI the surgeon mentioned can be arranged too.
+[0:58] AGENT: Thanks for clarifying.
+[1:04] AGENT: Do you have a specific provider you'd like to see for your follow-up, or are you open to the next available?
+[1:05] PATIENT: Yeah, next available is fine. If it’s with the surgeon or their team, that’s great—I just want to get the six week post-op follow-up on the books.
+[1:16] AGENT: Let me check the schedule for the next available follow-up consultation.
+[1:16] PATIENT: Sounds good—
+[1:30] AGENT: There are several openings for follow-up visits on Tuesday, September 8th with Judy Hauser, Carl Menz, PT, or Kelly Noble, MD. Do you have a preferred provider or should I offer the earliest available slot?
+[1:31] PATIENT: Uh, earliest available is fine. And while we’re booking it, can you also tell me if the MRI the surgeon mentioned can be arranged, and whether that happens on site or somewhere else?
+[1:44] AGENT: I'll ask the provider about arranging the MRI and whether it can be done on-site during your visit. The earliest available slot is Tuesday, September 8th at 9 a.m. with Doogie Hauser. Would you like to book that appointment?
+[1:59] PATIENT: Yes, please book Tuesday, September 8 at 9 a.m. with Judy Hauser. And, uh, before we wrap, who will confirm whether the MRI is ordered, and if it’s on site or at another location?
+[2:12] AGENT: Your appointment is set for Tuesday, September 8th at 9 a.m. with Doogie Houser at Pivot Point Orthopedics. Please bring your photo ID, insurance card, and a list of your current medication. The provider will review your case and confirm if the MRI is needed and whether it can be done on-site or at another location during your visit. Would you like a text confirmation of your appointment?
+[2:38] PATIENT: So I’ve got Tuesday, September 8 at 9 a.m. with Judy Hauser at Pivot Point Orthopedics, and the provider will decide about the MRI and whether it’s on site or somewhere else during the visit. Yes, a text confirmation would be great, thanks.
+[2:56] AGENT: You're all set for Tuesday, September 8th at 9 a.m. with Duvy Hauser at Pivot Point Orthopedics. The provider will discuss the MRI details with you during your visit. You'll get a text confirmation soon.
+[3:11] PATIENT: Great, that matches what I have. Thanks for your help—I'll see you then. Goodbye.
+[3:18] AGENT: Glad I could help. See you at your appointment. Bye-bye.
+[3:25] PATIENT: Bye, thanks again.
