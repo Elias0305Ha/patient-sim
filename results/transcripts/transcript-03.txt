@@ -1,0 +1,19 @@
+scenario: refill-request
+call_sid: CA4b64964c047b17cc35a1c0285c90e6f8
+
+[0:03] AGENT: This call may be recorded for quality and training purposes.
+[0:06] AGENT: Para Español, oprima el 2.
+[0:09] AGENT: Thank you for calling Pivot Point Orthopedics.
+[0:16] AGENT: Would you like to create a demo patient profile? I just need your first and last name to get started.
+[0:16] PATIENT: Hi, it’s Elias Hakenso. I’m calling to get a refill set up, but you can start with my name.
+[0:33] AGENT: I'm setting up your devo patient profile now. One moment while I get that ready, then we can talk about your refill request.
+[0:36] AGENT: Your patient profile is set up.
+[0:42] AGENT: and your date of birth is July 4th, 2000. How can I help you today?
+[0:43] PATIENT: Sorry, that’s not my date of birth—it’s May 3, 2003.
+
+I need a refill for meloxicam, 15 milligrams, once a day for my knee, and I’ve got about four days left. Could you send it to the Walgreens on Main Street, and let me know when it will actually be ready to pick up?
+[1:04] AGENT: I don't see any medications on your chart that I can refill right now, so I can't process the meloxicam request directly. Would you like me to connect you to our patient support team for further help?
+[1:17] PATIENT: Yes, please connect me. If they can’t pick up right away, can you tell me who will be calling me back and about when I should expect that?
+[1:24] AGENT: Time for you now. Thank you.
+[1:30] AGENT: Hello, you've reached the Pretty Good AI test line. Goodbye.
+[1:31] PATIENT: Oh—okay, thanks. If that’s the wrong line, I’ll try calling the office again.

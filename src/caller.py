@@ -112,25 +112,36 @@ def download_recording(client: Client, call_sid: str, account_sid: str,
                        auth_token: str, index: int) -> Path | None:
     """Fetch the call recording as MP3. The brief requires MP3 or OGG."""
     for attempt in range(10):
-        recordings = client.recordings.list(call_sid=call_sid, limit=1)
-        if recordings:
-            recording = recordings[0]
-            url = (
-                f"https://api.twilio.com/2010-04-01/Accounts/{account_sid}"
-                f"/Recordings/{recording.sid}.mp3"
-            )
-            response = requests.get(url, auth=(account_sid, auth_token), timeout=60)
-            response.raise_for_status()
+        try:
+            recordings = client.recordings.list(call_sid=call_sid, limit=1)
+            if recordings:
+                url = (
+                    f"https://api.twilio.com/2010-04-01/Accounts/{account_sid}"
+                    f"/Recordings/{recordings[0].sid}.mp3"
+                )
+                response = requests.get(
+                    url, auth=(account_sid, auth_token), timeout=60
+                )
+                response.raise_for_status()
 
-            RECORDING_DIR.mkdir(parents=True, exist_ok=True)
-            path = RECORDING_DIR / f"{index:02d}.mp3"
-            path.write_bytes(response.content)
-            return path
+                RECORDING_DIR.mkdir(parents=True, exist_ok=True)
+                path = RECORDING_DIR / f"{index:02d}.mp3"
+                path.write_bytes(response.content)
+                return path
 
-        log.info("recording not ready yet (attempt %d/10)", attempt + 1)
+            log.info("recording not ready yet (attempt %d/10)", attempt + 1)
+        except Exception as exc:
+            # A transient failure here loses a graded deliverable, so it must
+            # never be fatal and must never be quiet.
+            log.warning("recording fetch failed (attempt %d/10): %s", attempt + 1, exc)
         time.sleep(5)
 
-    log.warning("no recording appeared for %s", call_sid)
+    log.error(
+        "COULD NOT DOWNLOAD RECORDING for %s.\n"
+        "The audio is still on Twilio. Recover it with:\n"
+        "    python src/caller.py --fetch %s %d",
+        call_sid, call_sid, index,
+    )
     return None
 
 
@@ -188,8 +199,30 @@ def main() -> int:
     logging.getLogger("twilio").setLevel(logging.WARNING)
 
     parser = argparse.ArgumentParser(description="Place one test call.")
-    parser.add_argument("scenario")
+    parser.add_argument("scenario", nargs="?", help="scenario YAML to run")
+    parser.add_argument(
+        "--fetch",
+        nargs=2,
+        metavar=("CALL_SID", "INDEX"),
+        help="re-download a past call's recording; the call SID is in its transcript",
+    )
     args = parser.parse_args()
+
+    if args.fetch:
+        env = require_env("TWILIO_ACCOUNT_SID", "TWILIO_AUTH_TOKEN")
+        call_sid, index = args.fetch
+        client = Client(env["TWILIO_ACCOUNT_SID"], env["TWILIO_AUTH_TOKEN"])
+        path = download_recording(
+            client, call_sid, env["TWILIO_ACCOUNT_SID"], env["TWILIO_AUTH_TOKEN"],
+            int(index),
+        )
+        if path:
+            log.info("recording saved: %s", path)
+            return 0
+        return 1
+
+    if not args.scenario:
+        parser.error("give a scenario, or use --fetch to recover a recording")
     return asyncio.run(run(args.scenario))
 
 
