@@ -144,6 +144,13 @@ This is the same failure as the example bug in the brief -- booking outside
 operating hours -- reached from the opposite direction. The weekend case is
 handled (see below); the weekday boundary is not.
 
+**Corroborated in transcript-10** (`CA466f590950fad61318aa496fbeb7d4ac`, at 0:56). Asked the same question
+forty minutes later on a separate call, the agent gave byte-identical hours:
+Monday, Tuesday and Thursday 9-4, Wednesday 12-7, Friday 9-12. The hours are
+stable and consistently reported, so the 8:30 and 8:45 slots are not drift in
+the hours data. The scheduling path is the one that is wrong, and it presents
+its slots with the same confidence as the correct answer.
+
 **Not a bug:** the weekend probe in transcript-05 did not reproduce the example
 bug. Asked for Sunday, the agent refused and stated the practice is Monday to
 Friday; pushed to Saturday, it refused again. Whatever guards the weekend case

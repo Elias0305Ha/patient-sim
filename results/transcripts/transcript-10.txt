@@ -1,0 +1,19 @@
+scenario: hours-and-location
+call_sid: CA466f590950fad61318aa496fbeb7d4ac
+
+[0:03] AGENT: This call may be recorded for quality and training purposes.
+[0:07] AGENT: Para Español, oprima el 2.
+[0:07] PATIENT: Hi,
+[0:10] AGENT: Thank you for calling Pivot Point Orthopedics.
+[0:16] AGENT: Would you like to create a demo patient profile? I just need your first and last name to get started.
+[0:16] PATIENT: Um, yeah, it’s Elias Hakenso. I’m just calling to ask a few questions about the office, not to book anything yet.
+[0:31] AGENT: Your demo patient profile is set up and your date of birth is July 4th, 2000. What would you like to know about the office?
+[0:40] PATIENT: Uh, actually my date of birth is May 3, 2003, not July 4, 2000. I just want to make sure that’s right. So, yeah, I’ve got a couple practical questions. First, what are your opening hours?
+[0:56] AGENT: Edit Point Orthopedics is open Monday, Tuesday, and Thursday from 9 a.m. to 4 p.m., Wednesday from 12 p.m. to 7 p.m., and Friday from 9 a.m. to 12 p.m. Let me know your other questions.
+[1:10] PATIENT: Thanks, that helps. Um, could you tell me the address, and whether you’ve got more than one location or just the one office?
+[1:22] AGENT: Pivot Point Orthopedics has just one office. The address is Pivot Point Orthopedics, 220 Athens Way, Nashville. If you need directions or more details, just ask.
+[1:34] PATIENT: Right, thanks. Uh, I don’t drive, so I’m wondering what parking looks like around there, and if there’s decent transit nearby. And also, do you take walk-ins or same-day appointments, or does everything have to be scheduled ahead?
+[1:51] AGENT: There's free patient parking in the surface, lot in front of the building. For public transit, I don't have specific details, but the clinic is in a medical building, so most patients find it accessible. For appointments, we recommend scheduling ahead, but sometimes same-day slots are available if you call. Walk-ins aren't guaranteed, so it's best to book in advance. Anything else you'd like to know?
+[2:15] PATIENT: Yeah, that covers it. So, you’re open Monday, Tuesday, and Thursday 9 to 4, Wednesday 12 to 7, and Friday 9 to 12. It’s the single office at 220 Athens Way in Nashville, with free parking out front, transit you’re not sure about, and same-day might be possible if I call, but walk-ins aren’t guaranteed. I’m not ready to book yet, but thanks for all the info. Goodbye.
+[2:41] AGENT: You've got it all correct. If you have more questions or want to book later, just give us a call. Take care!
+[2:50] PATIENT: Will do. Thanks again, take care.
