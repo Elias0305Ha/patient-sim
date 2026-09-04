@@ -1,0 +1,25 @@
+scenario: schedule-basic
+call_sid: CA51ccdb2defb2d9637c1c85958a8000fc
+
+[0:07] AGENT: This call may be recorded for quality and training purposes. Para Español, oprima el 2.
+[0:20] AGENT: Thank you for calling Pivot Point Orthopedics. Would you like to create a demo patient profile? I just need your first and last name to get started.
+[0:21] PATIENT: Hi, this is Elias Hakenso. I’m calling to set up an appointment to have my right knee looked at.
+[0:38] AGENT: Thanks, Elias. Would you like me to create a demo patient profile for you so we can get started with scheduling your appointment? I just need your first and last name to set it up.
+[0:40] PATIENT: Yeah, it’s Elias Hakenso—first name Elias, last name Hakenso. And if it helps, I haven’t been seen for this knee yet.
+[0:54] AGENT: Thanks for clarifying, Elias.
+[1:03] AGENT: Let me finish setting up your demo patient profile, then I'll help you schedule your first appointment for your knee. One moment.
+[1:16] AGENT: Your patient profile is set up, and I have your date of birth as July 4th, 2000. How can I help you today?
+[1:21] PATIENT: Okay, I’ll just clarify a couple details, then we can focus on scheduling.
+[1:21] PATIENT: Sorry, I think the birthdate is wrong—mine is May 3, 2003.
+
+I rolled my right knee playing pickup basketball about three weeks ago, and it’s still sore, especially going downstairs and after sitting. I’d like the earliest appointment you’ve got, and mornings are better for me if that’s possible.
+[1:57] AGENT: Thanks for sharing those details, Elias. Since this is your first visit for your knee and you're looking for the earliest appointment, would you like to book this as a general office visit to have your knee checked out?
+[1:58] PATIENT: Yes, that sounds right. A general office visit to check the knee is exactly what I’m looking for.
+[2:24] AGENT: The soonest morning appointments I see are this Friday, September 4th. You can see either Dr. Kelly Noble or Dr. Zbigniew Lukoski. Would you like to book the 10 a.m. slot with Dr. Kelly Noble?
+[2:25] PATIENT: Yes, 10:00 a.m. Friday, September 4th with Dr. Kelly Noble works for me. Just to confirm, that’s the earliest morning slot available, and I’m booked for it.
+[2:48] AGENT: Yes. You are booked for Friday, September 4th at 10 a.m. with Dr. Kelly Noble at Pivot Point Orthopedics. That is the earliest morning slot available.
+[2:56] AGENT: Please bring your photo ID, insurance card, and a list of any medications or imaging discs you have.
+[3:00] PATIENT: Got it. I’m booked for Friday, September 4th at 10:00 a.m. with Dr. Kelly Noble, and that’s the earliest morning slot. I’ll bring my photo ID, insurance card, and any medication list or imaging discs I have. Thanks so much. Goodbye.
+[3:17] AGENT: You're all set, Elias.
+[3:20] AGENT: Take care and see you Friday. Goodbye.
+[3:22] PATIENT: Goodbye. Thanks again, I’ll see you Friday.

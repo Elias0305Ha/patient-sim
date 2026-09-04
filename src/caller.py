@@ -183,6 +183,10 @@ def main() -> int:
         format="%(asctime)s %(levelname)-5s %(message)s",
         datefmt="%H:%M:%S",
     )
+    # The Twilio client logs every request and response header at INFO, which
+    # buries the transcript we are actually here to watch.
+    logging.getLogger("twilio").setLevel(logging.WARNING)
+
     parser = argparse.ArgumentParser(description="Place one test call.")
     parser.add_argument("scenario")
     args = parser.parse_args()

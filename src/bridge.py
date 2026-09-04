@@ -74,7 +74,16 @@ class CallRecord:
         self.lines.append((elapsed, speaker, text))
         log.info("[%s] %s: %s", _mmss(elapsed), speaker, text)
 
-    def write(self, call_sid: str | None = None) -> Path:
+    def write(self, call_sid: str | None = None) -> Path | None:
+        """Save the transcript, unless nobody said anything.
+
+        Any websocket probe reaching this port opens a call record. Without this
+        guard those write empty transcripts that then throw off call numbering.
+        """
+        if not self.lines:
+            log.info("nothing was said; no transcript written")
+            return None
+
         TRANSCRIPT_DIR.mkdir(parents=True, exist_ok=True)
         existing = len(list(TRANSCRIPT_DIR.glob("transcript-*.txt")))
         path = TRANSCRIPT_DIR / f"transcript-{existing + 1:02d}.txt"
@@ -224,7 +233,9 @@ async def handle_call(twilio_ws, scenario: dict[str, Any]) -> None:
                 if task.exception() is not None:
                     raise task.exception()
         finally:
-            log.info("transcript written: %s", state["record"].write(state.get("call_sid")))
+            path = state["record"].write(state.get("call_sid"))
+            if path:
+                log.info("transcript written: %s", path)
 
 
 async def serve(scenario_path: str, port: int) -> None:
