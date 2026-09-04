@@ -48,6 +48,9 @@ BOT_TRANSCRIPT = "response.output_audio_transcript.done"
 
 TRANSCRIPT_DIR = Path(__file__).resolve().parent.parent / "results" / "transcripts"
 
+# Websocket path reserved for caller.py's pre-dial reachability probe.
+HEALTH_PATH = "/health"
+
 
 def realtime_headers() -> dict[str, str]:
     key = os.environ.get("OPENAI_API_KEY")
@@ -263,6 +266,13 @@ async def serve(scenario_path: str, port: int) -> None:
     scenario = load_scenario(scenario_path)
 
     async def handler(twilio_ws):
+        # caller.py probes this before dialling to prove Twilio can reach us.
+        # It returns without opening a Realtime session, so a health check
+        # costs nothing and leaves no transcript behind.
+        if getattr(twilio_ws.request, "path", "/") == HEALTH_PATH:
+            log.info("health check ok")
+            return
+
         log.info("incoming twilio connection")
         try:
             await handle_call(twilio_ws, scenario)

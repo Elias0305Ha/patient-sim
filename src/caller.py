@@ -23,7 +23,9 @@ import requests
 from dotenv import load_dotenv
 from twilio.rest import Client
 
-from bridge import serve
+import websockets
+
+from bridge import HEALTH_PATH, serve
 from prompt import load_scenario
 
 load_dotenv()
@@ -120,19 +122,26 @@ def index_of_new_transcript(before: set[Path]) -> int | None:
     return int(new.pop().stem.split("-")[1])
 
 
-def check_tunnel(wss_base: str) -> None:
+async def check_tunnel(wss_base: str) -> None:
     """Fail before dialling if Twilio would not be able to reach us.
 
     Quick tunnels expire without warning. Without this check the failure shows
     up as a call that connects, ends in zero seconds and costs money.
+
+    This performs a real websocket handshake, the same thing Twilio does, over
+    the whole path: internet, Cloudflare, this machine, the bridge. An ordinary
+    HTTP GET is not a valid substitute -- a websocket server does not answer
+    one, so the probe hangs precisely when everything is working.
     """
-    probe = wss_base.replace("wss://", "https://").rstrip("/") + "/"
+    probe = wss_base.rstrip("/") + HEALTH_PATH
     try:
-        requests.get(probe, timeout=10)
-    except requests.RequestException as exc:
+        async with asyncio.timeout(15):
+            async with websockets.connect(probe):
+                pass
+    except Exception as exc:
         raise SystemExit(
             f"Cannot reach {probe}\n"
-            f"  {exc}\n"
+            f"  {type(exc).__name__}: {exc}\n"
             "The tunnel is down. Restart it and put the new URL in "
             "PUBLIC_WSS_BASE:\n"
             "    cloudflared tunnel --url http://localhost:8080"
@@ -198,7 +207,7 @@ async def run(scenario_path: str) -> int:
     server = asyncio.create_task(serve(scenario_path, port))
     await asyncio.sleep(1)
 
-    check_tunnel(env["PUBLIC_WSS_BASE"])
+    await check_tunnel(env["PUBLIC_WSS_BASE"])
     before = transcripts_present()
 
     client = Client(env["TWILIO_ACCOUNT_SID"], env["TWILIO_AUTH_TOKEN"])
