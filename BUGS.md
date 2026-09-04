@@ -232,3 +232,52 @@ and the two statements above cannot both be true.
 
 The agent also never answered the direct question *"do you actually accept this
 plan?"*, which the patient asked twice.
+
+---
+
+## 7. Existing-appointment check runs on some calls and not others
+
+**Severity:** Medium
+
+**Calls:** `interruptions` transcript-08 (`CAbbe70c84c7f8dab41de81b32173a5426`) at 0:51-1:15, against
+`reschedule` transcript-06 (`CA15e8687b46cb18effe133ed41eb53282`) at 2:26.
+
+**Details:** At the end of transcript-06 the agent confirms the patient's only
+remaining appointment:
+
+> [3:28] AGENT: You still have one appointment booked Tuesday, September 8th at
+> 8.30 a.m. with Dr. Lukosky.
+
+In transcript-08 the same patient asks for the earliest available slot. The
+agent offers and books Tuesday September 8th at 10 a.m. with the same doctor,
+without mentioning the 8.30 a.m. appointment that already exists that morning:
+
+> [0:51] AGENT: Your least available appointment is Tuesday, September 8th at
+> 10 a.m. with Dr. Zygmunt Likoski. Would you like to book that slot?
+>
+> [1:15] AGENT: Your appointment is set for Tuesday, September 8th at 10 a.m.
+> with Dr. Zygmunt Lukosky at Pivot Point Orthopedics.
+
+The patient now has two appointments with the same provider on the same
+morning and was told about neither conflict.
+
+This is not a missing feature. Two calls earlier the agent performed exactly
+this check unprompted:
+
+> [2:26] AGENT: You have an appointment with Dr. Lukoski at 8.30 a.m. on
+> Tuesday, September 8th, and the new slot with Dr. Noble would be at 10.30
+> a.m. the same day. There's enough time between them so you can keep both.
+
+So the capability exists but does not run consistently. The difference between
+the two calls is that transcript-08 reached booking through a fast path where
+the caller was repeatedly interrupting and asking to skip ahead, which suggests
+the check is tied to a conversational route rather than to the booking action
+itself.
+
+**Also in this call:** *"Your least available appointment is..."* -- presumably
+"next" or "earliest". Minor, but it is the sentence that presents the slot the
+patient is asked to accept.
+
+**Not a bug:** the agent handled being interrupted well. Our caller cut in
+during the greeting and twice more mid-sentence; the agent did not restart its
+script from the top, did not repeat itself, and completed the booking in 1:46.

@@ -1,0 +1,20 @@
+scenario: interruptions
+call_sid: CAbbe70c84c7f8dab41de81b32173a5426
+
+[0:03] AGENT: This call may be recorded for quality and training purposes.
+[0:06] AGENT: Para Español, oprima el 2.
+[0:07] PATIENT: Uh, hi—
+[0:10] AGENT: Thank you for calling Pivot Point Orthopedics.
+[0:12] AGENT: Would you like to create a demo patient profile?
+[0:15] AGENT: I just need your first and last name to get started.
+[0:16] PATIENT: Uh, sorry, can we skip ahead? I’m short on time. It’s Elias Hakenso. I just need the first available appointment, any doctor, any day.
+[0:27] AGENT: Let me create your demo patient profile, then I'll check the soonest available appointment for you. One moment.
+[0:37] PATIENT: Yeah, sorry—could we just
+[0:37] AGENT: before I check the schedule.
+[0:40] PATIENT: Right, sorry to cut in, but I’m really short on time. Can you skip ahead and just grab the earliest slot? I’m in a car park between meetings and I’ve got maybe two minutes.
+[0:51] AGENT: Your least available appointment is Tuesday, September 8th at 10 a.m. with Dr. Zygmunt Likoski. Would you like to book that slot?
+[1:02] PATIENT: Yes, book that one, please. If you need it to verify me, my date of birth is May 3, 2003. After you confirm it’s booked, I’ll repeat the time back and we’re done.
+[1:15] AGENT: Your appointment is set for Tuesday, September 8th at 10 a.m. with Dr. Zygmunt Lukosky at Pivot Point Orthopedics. Please bring your photo ID, insurance card, and a list of your current medications.
+[1:30] PATIENT: Tuesday, September 8 at 10 AM with Dr. Zygmunt Lekowski. Got it. Thanks—I'll bring my ID and insurance. Appreciate it. Bye.
+[1:42] AGENT: You're all set. Have a great day.
+[1:46] PATIENT: Thanks, you too. I’m heading back in—bye.
