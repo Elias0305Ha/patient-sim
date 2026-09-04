@@ -148,3 +148,41 @@ handled (see below); the weekday boundary is not.
 bug. Asked for Sunday, the agent refused and stated the practice is Monday to
 Friday; pushed to Saturday, it refused again. Whatever guards the weekend case
 is either not applied to opening times or does not know them.
+
+---
+
+## 5. A past appointment is listed as upcoming, and can be "cancelled"
+
+**Severity:** Medium
+
+**Call:** `reschedule`, transcript-06 (`CA15e8687b46cb18effe133ed41eb53282`)
+at 0:50 and 3:28. Contrast with `weekend-booking`, transcript-05, at 2:54.
+
+**Details:** The call was placed at 12:47pm on Friday September 4th. Asked what
+was on file, the agent answered:
+
+> [0:50] AGENT: You have two upcoming appointments. One is today, Friday,
+> September 4th at 10 a.m. with Kelly Noble, M.D. The other is Tuesday,
+> September 8th at 8.30 a.m. with Z. Bignew-Lukosky, M.D.
+
+The 10 a.m. appointment had already passed nearly three hours earlier. The
+agent then took the patient through cancelling it and confirmed twice that it
+was done, without ever noting that the time had elapsed.
+
+The same record is reported differently between calls. In transcript-05, placed
+at 12:29pm the same day, the agent named only the Tuesday appointment:
+
+> [2:54] AGENT: You already have an appointment booked for Tuesday, September
+> 8th at 8.30 a.m. for your knee.
+
+Two calls eighteen minutes apart disagree about what is booked. A patient
+relying on either answer cannot tell which is right, and "cancelling" an
+appointment they have already missed gives false reassurance about a visit that
+did not happen.
+
+**Not a bug, and done well:** offered a second Tuesday slot, the agent checked
+it against the existing one rather than double-booking blindly -- *"There's
+enough time between them so you can keep both."* And the cancellation itself was
+handled correctly: this scenario was written expecting a rescheduled slot to
+survive a later cancellation, and that did not happen. The agent cancelled the
+right appointment and reported the remaining one consistently.

@@ -1,0 +1,28 @@
+scenario: reschedule
+call_sid: CA15e8687b46cb18effe133ed41eb53282
+
+[0:04] AGENT: This call may be recorded for quality and training purposes.
+[0:07] AGENT: Para Español, oprima el 2.
+[0:16] AGENT: Thank you for calling Pivot Point Orthopedics. Would you like to create a demo patient profile? I just need your first and last name to get started.
+[0:17] PATIENT: Um, yeah, this is Elias Hakenso. I think I already have an appointment on file, and I’m calling to sort that out, not set up a demo profile.
+[0:28] AGENT: Your patient profile is set up and your date of birth is July 4, 2000. How can I help you today?
+[0:36] PATIENT: Sorry, that date of birth isn’t right. It’s May 3, 2003.
+
+Could you tell me what appointment you currently have on file for me? I want to make sure we’re talking about the right one before we change anything.
+[0:50] AGENT: You have two upcoming appointments. One is today, Friday, September 4th at 10 a.m. with Kelly Noble, M.D. The other is Tuesday, September 8th at 8.30 a.m. with Z. Bignew-Lukosky, M.D. Which one would you like to talk about?
+[1:10] PATIENT: Uh, the one today at 10 with Dr. Noble is the problem. Work dropped a meeting right on top of it, and I can’t move that.
+
+Could we shift that to a different day later this week, just not the same time of day?
+[1:26] AGENT: You'd like to reschedule your appointment today at 10 a.m. with Dr. Noble. Can you tell me the reason for rescheduling? I'll note it before I look for new times.
+[1:38] PATIENT: Yeah, it’s a work conflict. They scheduled a meeting right over it, and I can’t move that one. If you can look for later in the week, that would be great.
+[1:56] AGENT: The next available slot with Dr. Noble is Tuesday, September 8th.
+[2:04] AGENT: at 10.30am. Would you like to move your appointment to that time or would you prefer a different time or day?
+[2:07] PATIENT: Uh, that might work, but I’ve already got that other appointment Tuesday morning, the 8:30 one. Would that overlap or cause any issue? If it’s still fine to book the 10:30 later that morning, I guess we can go with that.
+[2:26] AGENT: You have an appointment with Dr. Lukoski at 8.30 a.m. on Tuesday, September 8th, and the new slot with Dr. Noble would be at 10.30 a.m. the same day. There's enough time between them so you can keep both. Would you like to confirm moving your appointment with Dr. Noble to Tuesday, September 8th at 10.30 a.m.?
+[2:49] PATIENT: Uh, actually, I’m sorry, my schedule’s turned into more of a mess than I realized. Could we cancel the Dr. Noble appointment instead of moving it? And before we wrap up, can you confirm there’s nothing left booked under my name that I need to worry about?
+[3:05] AGENT: Just to confirm, you want to cancel your appointment today, Friday, September 4th, with Dr. Noble. Is that correct?
+[3:16] PATIENT: Yes, that’s right, please cancel today’s appointment with Dr. Noble. And once that’s done, could you confirm exactly what, if anything, is still booked under my name?
+[3:28] AGENT: Your appointment today with Dr. Noble has been cancelled. You still have one appointment booked Tuesday, September 8th at 8.30 a.m. with Dr. Lukosky. Is there anything else you'd like to take care of?
+[3:43] PATIENT: Okay, so just to confirm, today’s appointment with Dr. Noble is canceled, and the only thing still booked is Tuesday, September 8 at 8:30 a.m. with Dr. Lukoski. Thanks for helping me straighten that out. That’s all I needed, so, uh, goodbye.
+[4:00] AGENT: You're all set! Today's appointment with Dr. Noble is cancelled and your only upcoming appointment is Tuesday, September 8th at 8.30am with Dr. Lukoski. Have a great day!
+[4:16] PATIENT: Great, thanks again for confirming. I’ll stick with that one appointment. Have a good day—bye.
