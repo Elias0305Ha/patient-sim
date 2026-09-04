@@ -1,0 +1,22 @@
+scenario: insurance-update
+call_sid: CAc09f471c20aa162aa86ed2e0b9288dd8
+
+[0:03] AGENT: This call may be recorded for quality and training purposes.
+[0:07] AGENT: Para Español, oprima el 2.
+[0:10] AGENT: Thank you for calling Pivot Point Orthopedics.
+[0:16] AGENT: Would you like to create a demo patient profile? I just need your first and last name to get started.
+[0:17] PATIENT: Um, yeah, it's Elias Hakenso. I’m calling to get my insurance updated on file.
+[0:24] AGENT: Your patient profile is set up and your date of birth is July 4, 2000 for this demo. How may I help you today?
+[0:32] PATIENT: Uh, sorry, that date of birth isn’t right. It’s May 3, 2003.
+
+I just started a new job and my insurance changed on the first, so I need to update it to Blue Cross Blue Shield.
+[0:56] AGENT: There is no insurance on file for you right now. Would you like me to text a secure link to your number ending 8710?
+[1:00] AGENT: so you can upload photos of your Blue Cross Blue Shield card.
+[1:01] PATIENT: Uh, yeah, that’s fine, you can send the secure link. I don’t have the group number handy, but my Blue Cross Blue Shield member ID is XKP884120366. And do you actually accept this plan?
+[1:19] AGENT: We were not able to collect your insurance details just now, so our team will follow up with you directly to confirm your Blue Cross Blue Shield plan and let you know if it's accepted. Is there anything else I can help you with today?
+[1:34] PATIENT: Uh, could you tell me when they’ll follow up, and who it’s coming from? I just want to make sure they have my member ID, and that I don’t have the group number handy, so they’re not waiting on that.
+[2:04] AGENT: Our clinic support team will reach out as soon as possible, usually within a few business days. They will contact you directly from Pivot Point Orthopedics. I've noted that you provided your Blue Cross Blue Shield member ID, and do not have the group number handy, so they will not wait for that.
+[2:06] AGENT: Is there anything else you'd like to ask?
+[2:08] PATIENT: So, just to confirm, your clinic support team from Pivot Point Orthopedics will reach out in a few business days, and you’ve noted my Blue Cross Blue Shield member ID and that I don’t have the group number handy. Thanks for that. That’s everything from me. Appreciate it—goodbye.
+[2:25] AGENT: You're all set, take care.
+[2:30] PATIENT: Thanks, you too. Bye.

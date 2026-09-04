@@ -186,3 +186,49 @@ enough time between them so you can keep both."* And the cancellation itself was
 handled correctly: this scenario was written expecting a rescheduled slot to
 survive a later cancellation, and that did not happen. The agent cancelled the
 right appointment and reported the remaining one consistently.
+
+---
+
+## 6. Advertised self-service capabilities defer to a callback instead of completing
+
+**Severity:** High
+
+**Calls:** `refill-request` transcript-03 (`CA4b64964c047b17cc35a1c0285c90e6f8`)
+at 1:04, `identity-mismatch` transcript-04
+(`CAcdd1823e43b73b6742e77381d0156b67`) at 1:08, `insurance-update`
+transcript-07 (`CAc09f471c20aa162aa86ed2e0b9288dd8`) at 1:19 and 2:04.
+
+**Details:** The signup flow states: *"You can create or change appointments,
+update insurance, or refill a prescription at the demo clinic Pivot Point
+Orthopedics."* Of those four capabilities, only appointment scheduling and
+changing actually complete during the call. The other three all end in a
+promise that somebody else will deal with it:
+
+- Refill (transcript-03): *"Would you like me to connect you to our patient
+  support team for further help?"* -- and that transfer then fails outright
+  (see bug 2).
+- Identity correction (transcript-04): *"The clinic support team will review and
+  confirm the change as soon as they can."*
+- Insurance (transcript-07): *"our team will follow up with you directly to
+  confirm your Blue Cross Blue Shield plan and let you know if it's accepted."*
+
+Each deferral is individually reasonable. Together they mean a patient can call
+the number advertised for these tasks, complete none of them, and leave with no
+confirmed timeline. Two of the three are also unverifiable to the caller: they
+are told a note was made, but nothing is read back.
+
+**Compounding this, in transcript-07 the agent contradicts itself about whether
+it captured anything:**
+
+> [1:19] AGENT: We were not able to collect your insurance details just now, so
+> our team will follow up with you directly...
+>
+> [2:04] AGENT: I've noted that you provided your Blue Cross Blue Shield member
+> ID, and do not have the group number handy, so they will not wait for that.
+
+The patient stated the member ID aloud (XKP884120366). The agent never repeats
+it back, so there is no way for the caller to confirm it was heard correctly --
+and the two statements above cannot both be true.
+
+The agent also never answered the direct question *"do you actually accept this
+plan?"*, which the patient asked twice.
