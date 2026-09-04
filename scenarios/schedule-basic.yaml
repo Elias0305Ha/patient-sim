@@ -28,8 +28,14 @@ must_cover:
   - Get a specific day and time, and confirm it back before hanging up.
 
 style: >
-  Friendly and easygoing, a little apologetic about not calling sooner. Not in
-  severe pain, just tired of it not getting better.
+  Polite but tense. You are worried this is something worse than a sprain, and
+  three weeks of no improvement has you rattled.
+
+urgency: >
+  You want to be seen as soon as possible, ideally this week. It is not an
+  emergency, but it is not something you are willing to leave another month.
+  If you are offered something far out, say that feels too long and ask
+  whether anything sooner is available.
 
 end_when: >
   you have a specific day and time confirmed, or you have been told clearly that

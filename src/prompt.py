@@ -115,6 +115,28 @@ def build_instructions(scenario: dict[str, Any]) -> str:
     if scenario.get("style"):
         lines += ["", "YOUR MOOD RIGHT NOW", f"- {_text(scenario['style'])}"]
 
+    # Every caller to a doctor's office wants something sorted out, so the
+    # default leans concerned rather than neutral. Scenarios that need a calmer
+    # or more agitated caller override it.
+    urgency = _text(
+        scenario.get(
+            "urgency",
+            "This has been bothering you for a while and you want it dealt with "
+            "soon. You are not panicking, but you are genuinely concerned and "
+            "you would be disappointed to get off the phone without a real "
+            "answer.",
+        )
+    )
+    lines += [
+        "",
+        "HOW YOU SOUND",
+        f"- {urgency}",
+        "- Let that concern come through in your voice. You are not making "
+        "small talk; you want this handled.",
+        "- Answer as soon as they finish speaking. Do not leave a gap before "
+        "you reply, and do not narrate what you are about to do -- just say it.",
+    ]
+
     end_when = _text(
         scenario.get(
             "end_when",
@@ -147,13 +169,22 @@ def build_session_update(scenario: dict[str, Any]) -> dict[str, Any]:
                     "format": MULAW_FORMAT,
                     # semantic_vad waits for a finished thought rather than a
                     # silence threshold, so we interrupt the agent far less.
-                    "turn_detection": {"type": "semantic_vad"},
+                    # eagerness controls how long it waits once it thinks the
+                    # thought is done; the default ("auto") left an audible gap
+                    # before every reply on call 1.
+                    "turn_detection": {
+                        "type": "semantic_vad",
+                        "eagerness": "high",
+                    },
                     # Gives us the agent's side of the transcript.
                     "transcription": {"model": "whisper-1", "language": "en"},
                 },
                 "output": {
                     "format": MULAW_FORMAT,
-                    "voice": scenario.get("voice", "marin"),
+                    # cedar is one of the two voices OpenAI recommends for
+                    # quality and reads male. Overridable per scenario so a
+                    # persona can be cast differently.
+                    "voice": scenario.get("voice", "cedar"),
                 },
             },
             "instructions": build_instructions(scenario),
