@@ -103,9 +103,40 @@ def wait_for_completion(client: Client, call_sid: str) -> str:
     return "timed-out"
 
 
-def next_index() -> int:
-    """Number the recording to match the transcript the bridge just wrote."""
-    return max(len(list(TRANSCRIPT_DIR.glob("transcript-*.txt"))), 1)
+def transcripts_present() -> set[Path]:
+    return set(TRANSCRIPT_DIR.glob("transcript-*.txt"))
+
+
+def index_of_new_transcript(before: set[Path]) -> int | None:
+    """Number the recording after the transcript this call actually wrote.
+
+    Deriving the index from a count instead was wrong: a call that never
+    connects writes no transcript, so the count does not advance and the next
+    download overwrites the previous call's recording. Ask which file appeared.
+    """
+    new = transcripts_present() - before
+    if not new:
+        return None
+    return int(new.pop().stem.split("-")[1])
+
+
+def check_tunnel(wss_base: str) -> None:
+    """Fail before dialling if Twilio would not be able to reach us.
+
+    Quick tunnels expire without warning. Without this check the failure shows
+    up as a call that connects, ends in zero seconds and costs money.
+    """
+    probe = wss_base.replace("wss://", "https://").rstrip("/") + "/"
+    try:
+        requests.get(probe, timeout=10)
+    except requests.RequestException as exc:
+        raise SystemExit(
+            f"Cannot reach {probe}\n"
+            f"  {exc}\n"
+            "The tunnel is down. Restart it and put the new URL in "
+            "PUBLIC_WSS_BASE:\n"
+            "    cloudflared tunnel --url http://localhost:8080"
+        )
 
 
 def download_recording(client: Client, call_sid: str, account_sid: str,
@@ -126,6 +157,12 @@ def download_recording(client: Client, call_sid: str, account_sid: str,
 
                 RECORDING_DIR.mkdir(parents=True, exist_ok=True)
                 path = RECORDING_DIR / f"{index:02d}.mp3"
+                if path.exists():
+                    # Recordings are graded evidence; never clobber one.
+                    raise SystemExit(
+                        f"{path.name} already exists. Refusing to overwrite a "
+                        "recording. Pass a free index to --fetch."
+                    )
                 path.write_bytes(response.content)
                 return path
 
@@ -161,6 +198,9 @@ async def run(scenario_path: str) -> int:
     server = asyncio.create_task(serve(scenario_path, port))
     await asyncio.sleep(1)
 
+    check_tunnel(env["PUBLIC_WSS_BASE"])
+    before = transcripts_present()
+
     client = Client(env["TWILIO_ACCOUNT_SID"], env["TWILIO_AUTH_TOKEN"])
     log.info("scenario %s: dialling %s from %s",
              scenario["id"], target, env["TWILIO_FROM_NUMBER"])
@@ -179,9 +219,18 @@ async def run(scenario_path: str) -> int:
         log.error("call did not complete; no recording to fetch")
         return 1
 
+    index = index_of_new_transcript(before)
+    if index is None:
+        log.error(
+            "Nobody spoke on this call, so there is no transcript and nothing "
+            "worth downloading. Call SID %s if you want to check it by hand.",
+            call.sid,
+        )
+        return 1
+
     path = await asyncio.to_thread(
         download_recording, client, call.sid, env["TWILIO_ACCOUNT_SID"],
-        env["TWILIO_AUTH_TOKEN"], next_index(),
+        env["TWILIO_AUTH_TOKEN"], index,
     )
     if path:
         log.info("recording saved: %s", path)
