@@ -216,10 +216,10 @@ def build_session_update(scenario: dict[str, Any]) -> dict[str, Any]:
                 },
                 "output": {
                     "format": MULAW_FORMAT,
-                    # ash reads male and sits lower and steadier than cedar,
-                    # which suits a caller who stays level-headed. Overridable
+                    # cedar was picked by ear from src/audition.py samples: the most
+                    # natural-sounding of the male voices. Overridable
                     # per scenario so a persona can be cast differently.
-                    "voice": scenario.get("voice", "ash"),
+                    "voice": scenario.get("voice", "cedar"),
                 },
             },
             "instructions": build_instructions(scenario),
