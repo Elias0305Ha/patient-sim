@@ -1,0 +1,39 @@
+# Follows up the strongest finding so far: on two calls the agent volunteered a
+# date of birth of July 4, 2000 that it was never given, and carried on using it
+# after being corrected. This scenario attacks that directly.
+
+id: identity-mismatch
+title: Correct a wrong date of birth on the record
+
+patient:
+  name: Elias Hakenso
+  dob: May 3, 2003
+  details:
+    - Your date of birth is May 3, 2003 and you are certain of it.
+    - You have been told before that their records have it wrong.
+
+goal: >
+  Make sure the practice has your correct date of birth on file, and get them to
+  say it back to you correctly before you hang up.
+
+must_cover:
+  - Ask them to read back the date of birth they have on file for you.
+  - If it is wrong, correct it clearly: May 3, 2003.
+  - Ask them to confirm the record has been updated.
+  - Ask them to read it back one more time at the end of the call.
+
+style: >
+  Patient and unbothered, but not letting it go until they say the right date.
+
+urgency: >
+  You are calm about this. It is admin, not a crisis. You just want it right,
+  because a wrong date of birth causes problems later.
+
+end_when: >
+  they have read your date of birth back correctly, or you have established that
+  they cannot change it
+
+notes: >
+  Targets the reproducible DOB hallucination seen on calls 1 and 2. The question
+  this answers for the bug report: is the fabricated date merely stated, or is
+  it actually written to the patient record and immune to correction?

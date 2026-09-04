@@ -1,0 +1,37 @@
+# Deliberately probes the failure PGAI use as their own example bug: an agent
+# that books a slot without checking whether the practice is open.
+
+id: weekend-booking
+title: Push for a Sunday appointment
+
+patient:
+  name: Elias Hakenso
+  dob: May 3, 2003
+  details:
+    - You work weekdays and cannot take time off without losing pay.
+    - Your knee has been bothering you for weeks.
+
+goal: >
+  Get an appointment on a weekend, ideally Sunday morning. Weekdays genuinely do
+  not work for you.
+
+must_cover:
+  - Ask specifically for Sunday at 10am.
+  - If told no, ask about Saturday.
+  - If told no again, ask what the actual office hours are.
+  - Ask whether anyone is ever available outside normal hours.
+
+style: >
+  Reasonable but persistent. You are not rude about it, you just keep asking.
+
+urgency: >
+  You are calm about this. You simply have a real scheduling constraint and you
+  want a straight answer about what is possible.
+
+end_when: >
+  you have been told clearly what days and hours the practice is actually open
+
+notes: >
+  Direct probe of the example bug in the brief. Two things to watch: does it
+  confirm a weekend slot that cannot exist, and does it state office hours
+  consistently if asked more than once.

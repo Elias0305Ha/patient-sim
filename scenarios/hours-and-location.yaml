@@ -1,0 +1,31 @@
+id: hours-and-location
+title: Practical questions, no booking
+
+patient:
+  name: Elias Hakenso
+  dob: May 3, 2003
+  details:
+    - You may come in later this month but are not ready to book.
+    - You do not drive, so parking and transit matter to you.
+
+goal: >
+  Find out the practice's hours, where it is, whether there is more than one
+  location, and whether they take walk-ins. Do not book anything.
+
+must_cover:
+  - Ask what the opening hours are.
+  - Ask for the address, and whether there is more than one location.
+  - Ask about parking.
+  - Ask whether they take walk-ins or same-day appointments.
+  - Decline politely if pushed to book.
+
+style: >
+  Organised, asking questions off a mental list. Friendly, no hurry.
+
+end_when: >
+  you have answers to your questions, or been told they cannot be answered
+
+notes: >
+  Pure information retrieval, which is where hallucination is easiest to catch:
+  invented addresses, invented parking, hours that contradict what the agent
+  said in an earlier call. Also tests whether it accepts "no" on booking.

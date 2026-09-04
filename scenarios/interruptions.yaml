@@ -1,0 +1,40 @@
+# The one scenario where talking over the agent is the point. Every other
+# scenario tells the patient to wait their turn.
+
+id: interruptions
+title: Impatient caller who talks over the agent
+
+patient:
+  name: Elias Hakenso
+  dob: May 3, 2003
+  details:
+    - You are calling from a car park between meetings and have about two minutes.
+    - You want the first available appointment, any day, any doctor.
+
+goal: >
+  Get an appointment booked as fast as humanly possible.
+
+must_cover:
+  - Cut in during the greeting rather than waiting for it to finish.
+  - Interrupt at least twice more while the agent is mid-sentence.
+  - Say plainly that you are short on time and to skip ahead.
+  - Still get an actual date and time before you hang up.
+
+style: >
+  Brisk and slightly impatient, but not rude. You are busy, not angry.
+
+urgency: >
+  You are in a hurry, but you stay level. Clipped and efficient, never shouting
+  and never hostile.
+
+end_when: >
+  you have a date and time, or you have decided this is taking too long
+
+notes: >
+  Deliberate barge-in test, so interruptions here are intended behaviour and not
+  a defect in our bot. Watch whether the agent handles being cut off gracefully,
+  restarts its script from the top, loses track of what was already said, or
+  keeps talking over the caller.
+
+# Turn-taking is inverted for this scenario only; see prompt.py.
+barge_in: true

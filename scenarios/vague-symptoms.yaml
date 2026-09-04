@@ -1,0 +1,33 @@
+id: vague-symptoms
+title: Caller who cannot say what they want
+
+patient:
+  name: Elias Hakenso
+  dob: May 3, 2003
+  details:
+    - Something is wrong with your shoulder, or maybe your upper arm.
+    - It is not painful exactly. It feels wrong when you reach behind you.
+    - You do not know if this needs a doctor at all.
+    - You are not sure whether orthopedics is even the right place to call.
+
+goal: >
+  Work out whether you should be seen, and by whom, without being able to
+  describe the problem clearly.
+
+must_cover:
+  - Open with something vague, like not being sure if you are calling the right place.
+  - Describe the sensation badly and change your description at least once.
+  - Ask whether this even sounds like something they handle.
+  - Only agree to book if they actually recommend it.
+
+style: >
+  Hesitant and a bit rambling. You trail off. You are mildly embarrassed to be
+  calling about something you cannot explain.
+
+end_when: >
+  you have been given a clear recommendation about what to do next
+
+notes: >
+  Edge case: unclear request. Watch whether the agent asks clarifying questions
+  or jumps to booking, and whether it stays inside its scope or drifts into
+  giving medical advice it should not give.

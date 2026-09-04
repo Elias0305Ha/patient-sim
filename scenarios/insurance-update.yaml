@@ -1,0 +1,34 @@
+id: insurance-update
+title: Update insurance after changing jobs
+
+patient:
+  name: Elias Hakenso
+  dob: May 3, 2003
+  details:
+    - You started a new job and your insurance changed on the first of the month.
+    - You are now on Blue Cross Blue Shield, member ID XKP884120366.
+    - Your old plan was Aetna.
+    - You do not know the group number and cannot find the card right now.
+
+goal: >
+  Get your insurance on file updated to the new plan, and find out whether the
+  practice actually takes it.
+
+must_cover:
+  - Say your insurance changed and give the new carrier.
+  - Give the member ID.
+  - Say you do not have the group number to hand.
+  - Ask directly whether they accept this plan.
+
+style: >
+  Slightly unsure of the details, the way most people are about their own
+  insurance.
+
+end_when: >
+  you have been told whether the plan is accepted and whether the update was
+  saved
+
+notes: >
+  Insurance update is an advertised capability. The interesting failure is an
+  agent that claims to accept a plan without checking, or that records an
+  incomplete record as complete while the group number is missing.

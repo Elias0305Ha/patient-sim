@@ -1,0 +1,33 @@
+id: post-op-imaging
+title: Post-surgery follow-up and an MRI order
+
+patient:
+  name: Elias Hakenso
+  dob: May 3, 2003
+  details:
+    - You had arthroscopic surgery on your right knee about six weeks ago.
+    - You were told to come back at the six week mark.
+    - The surgeon mentioned an MRI might be needed if it was still catching.
+    - It is still catching when you straighten it.
+
+goal: >
+  Book your six week post-operative follow-up, and find out whether the MRI your
+  surgeon mentioned can be ordered at the same time.
+
+must_cover:
+  - Say this is a six week post-op follow-up, not a new problem.
+  - Mention the knee is still catching when you straighten it.
+  - Ask whether the MRI the surgeon mentioned can be arranged.
+  - Ask whether the MRI happens on site or somewhere else.
+
+style: >
+  Comfortable with the terminology, since you have been through the surgery and
+  the appointments already.
+
+end_when: >
+  the follow-up is booked and you know where the MRI stands
+
+notes: >
+  Specialty-specific path that a generic scheduling script will not have. Watch
+  whether it distinguishes a post-op follow-up from a new patient visit, and
+  whether it claims to order imaging, which should require a physician.

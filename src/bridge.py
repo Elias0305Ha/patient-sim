@@ -69,8 +69,15 @@ class CallRecord:
         self.started = time.monotonic()
         self.lines: list[tuple[float, str, str]] = []
 
-    def add(self, speaker: str, text: str) -> None:
-        elapsed = time.monotonic() - self.started
+    def add(self, speaker: str, text: str, started_at: float | None = None) -> None:
+        """Record one utterance, timed from when it was *spoken*.
+
+        Transcripts arrive when transcription finishes, not when the person
+        began talking, and a long turn can finish transcribing after the reply
+        it provoked. Stamping on arrival puts answers before their questions,
+        which would make every timestamp in the bug report wrong.
+        """
+        elapsed = (started_at or time.monotonic()) - self.started
         self.lines.append((elapsed, speaker, text))
         log.info("[%s] %s: %s", _mmss(elapsed), speaker, text)
 
@@ -93,7 +100,10 @@ class CallRecord:
             header.append(f"call_sid: {call_sid}")
         header.append("")
 
-        body = [f"[{_mmss(t)}] {who}: {text}" for t, who, text in self.lines]
+        body = [
+            f"[{_mmss(t)}] {who}: {text}"
+            for t, who, text in sorted(self.lines, key=lambda line: line[0])
+        ]
         path.write_text("\n".join(header + body) + "\n", encoding="utf-8")
         return path
 
@@ -179,6 +189,8 @@ async def _openai_to_twilio(openai_ws, twilio_ws, state: dict[str, Any]) -> None
         kind = event.get("type")
 
         if kind == AUDIO_DELTA:
+            # First delta of a reply is the moment our patient starts speaking.
+            state.setdefault("bot_started", time.monotonic())
             await _send_twilio(
                 twilio_ws,
                 state,
@@ -187,12 +199,21 @@ async def _openai_to_twilio(openai_ws, twilio_ws, state: dict[str, Any]) -> None
         elif kind == SPEECH_STARTED:
             # The agent started talking. Twilio may already hold seconds of our
             # audio; without this clear we talk straight over them.
+            state["agent_started"] = time.monotonic()
             if await _send_twilio(twilio_ws, state, {"event": "clear"}):
                 log.info("barge-in: cleared twilio buffer")
         elif kind == AGENT_TRANSCRIPT:
-            record.add("AGENT", (event.get("transcript") or "").strip())
+            record.add(
+                "AGENT",
+                (event.get("transcript") or "").strip(),
+                state.pop("agent_started", None),
+            )
         elif kind == BOT_TRANSCRIPT:
-            record.add("PATIENT", (event.get("transcript") or "").strip())
+            record.add(
+                "PATIENT",
+                (event.get("transcript") or "").strip(),
+                state.pop("bot_started", None),
+            )
         elif kind == "error":
             log.error("realtime error: %s", json.dumps(event.get("error", event)))
 

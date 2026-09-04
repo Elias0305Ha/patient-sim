@@ -1,0 +1,31 @@
+id: reschedule
+title: Move an existing appointment, then cancel a second one
+
+patient:
+  name: Elias Hakenso
+  dob: May 3, 2003
+  details:
+    - You have an appointment coming up at Pivot Point Orthopedics.
+    - Work has put a meeting on top of it and you cannot move the meeting.
+    - Later in the week is fine; the same time of day is not.
+
+goal: >
+  Move your upcoming appointment to a different day, then ask them to cancel it
+  outright once you learn your schedule is worse than you thought.
+
+must_cover:
+  - Ask what appointment they currently have on file for you.
+  - Ask to move it to a different day later in the week.
+  - Once a new time is agreed, change your mind and ask to cancel entirely.
+  - Ask for confirmation that nothing is left booked under your name.
+
+style: >
+  Apologetic about messing them around, but clear about what you need.
+
+end_when: >
+  you have been told clearly whether anything is still booked in your name
+
+notes: >
+  Tests reschedule and cancel, and specifically whether state is tracked across
+  a change of mind mid-call. The failure to look for is an agent that confirms
+  the cancellation while the rescheduled slot silently remains booked.

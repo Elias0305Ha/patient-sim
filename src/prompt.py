@@ -97,8 +97,22 @@ def build_instructions(scenario: dict[str, Any]) -> str:
         "- Plain spoken English. Contractions, small hesitations, occasional "
         "'um' or 'sorry, one sec'. Do not sound polished or scripted.",
         "- Never read out bullet points, headings, or anything list-shaped.",
-        "- Let the other person finish. If you do talk over them, apologise "
-        "briefly and let them go first.",
+    ]
+
+    # Every scenario waits its turn except the one whose whole point is barging
+    # in. Without this the global rule and that scenario contradict each other.
+    if scenario.get("barge_in"):
+        lines.append(
+            "- Do not wait for them to finish. Cut in when you have heard "
+            "enough, the way an impatient caller does. Stay polite about it."
+        )
+    else:
+        lines.append(
+            "- Let the other person finish. If you do talk over them, "
+            "apologise briefly and let them go first."
+        )
+
+    lines += [
         "- If you are asked something you were not given an answer for, improvise "
         "something an ordinary patient would plausibly say. Stay consistent with "
         "anything you have already said on this call.",
@@ -115,26 +129,28 @@ def build_instructions(scenario: dict[str, Any]) -> str:
     if scenario.get("style"):
         lines += ["", "YOUR MOOD RIGHT NOW", f"- {_text(scenario['style'])}"]
 
-    # Every caller to a doctor's office wants something sorted out, so the
-    # default leans concerned rather than neutral. Scenarios that need a calmer
-    # or more agitated caller override it.
+    # Calm by default. A level caller is also the better test instrument: when
+    # the agent gets something wrong, an unflustered correction shows whether it
+    # recovers, where an agitated one muddies what caused the failure.
     urgency = _text(
         scenario.get(
             "urgency",
-            "This has been bothering you for a while and you want it dealt with "
-            "soon. You are not panicking, but you are genuinely concerned and "
-            "you would be disappointed to get off the phone without a real "
-            "answer.",
+            "You would like this sorted out, and you are in no particular rush "
+            "about it. Nothing here is an emergency.",
         )
     )
     lines += [
         "",
         "HOW YOU SOUND",
         f"- {urgency}",
-        "- Let that concern come through in your voice. You are not making "
-        "small talk; you want this handled.",
-        "- Answer as soon as they finish speaking. Do not leave a gap before "
-        "you reply, and do not narrate what you are about to do -- just say it.",
+        "- Calm and even the whole way through. Steady, low-key, easy to deal "
+        "with. Never anxious, never pushy, never chirpy.",
+        "- Calm does not mean slow. Answer as soon as they finish speaking, "
+        "without leaving a gap.",
+        "- If they get something wrong, mishear you, or repeat themselves, stay "
+        "relaxed about it. Correct them once, plainly, and carry on. Do not "
+        "get irritated and do not over-apologise.",
+        "- Do not narrate what you are about to do. Just say the thing.",
     ]
 
     end_when = _text(
@@ -167,24 +183,31 @@ def build_session_update(scenario: dict[str, Any]) -> dict[str, Any]:
             "audio": {
                 "input": {
                     "format": MULAW_FORMAT,
-                    # semantic_vad waits for a finished thought rather than a
-                    # silence threshold, so we interrupt the agent far less.
-                    # eagerness controls how long it waits once it thinks the
-                    # thought is done; the default ("auto") left an audible gap
-                    # before every reply on call 1.
+                    # server_vad fires on a silence timer instead of judging
+                    # whether a thought is finished, which removes the
+                    # deliberation semantic_vad spends before every reply.
+                    # "high" eagerness was already the fastest semantic setting,
+                    # so this is the only remaining lever on the gap.
+                    #
+                    # The risk is cutting the agent off mid-pause. 500ms is
+                    # comfortably longer than the breath between clauses and
+                    # short enough to feel prompt. If calls start showing
+                    # interruptions, raise this before changing anything else.
                     "turn_detection": {
-                        "type": "semantic_vad",
-                        "eagerness": "high",
+                        "type": "server_vad",
+                        "silence_duration_ms": 500,
+                        "prefix_padding_ms": 300,
+                        "threshold": 0.5,
                     },
                     # Gives us the agent's side of the transcript.
                     "transcription": {"model": "whisper-1", "language": "en"},
                 },
                 "output": {
                     "format": MULAW_FORMAT,
-                    # cedar is one of the two voices OpenAI recommends for
-                    # quality and reads male. Overridable per scenario so a
-                    # persona can be cast differently.
-                    "voice": scenario.get("voice", "cedar"),
+                    # ash reads male and sits lower and steadier than cedar,
+                    # which suits a caller who stays level-headed. Overridable
+                    # per scenario so a persona can be cast differently.
+                    "voice": scenario.get("voice", "ash"),
                 },
             },
             "instructions": build_instructions(scenario),
