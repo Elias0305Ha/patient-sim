@@ -1,0 +1,25 @@
+scenario: vague-symptoms
+call_sid: CA23790649a431c0b25fc194b7c75d3499
+
+[0:04] AGENT: This call may be recorded for quality and training purposes.
+[0:07] AGENT: Para Español, oprima el 2.
+[0:10] AGENT: Thank you for calling Pivot Point Orthopedics.
+[0:17] PATIENT: Um, yeah, it’s Elias Hakenso. I’m not totally sure this is the right place to call, but I figured I’d start here.
+[0:18] AGENT: Would you like to create a demo patient profile? I just need your first and last name to get started.
+[0:25] AGENT: Your patient profile is set up and your date of birth is July 4, 2000 for demo purposes. How may I help you today?
+[0:35] PATIENT: Right, sorry, it’s actually May 3, 2003.
+
+So, um, I’ve got this thing with my shoulder, or maybe it’s my upper arm. It’s not painful exactly, but when I reach behind me it feels... wrong, like something’s catching, but then sometimes it feels more weak than stuck. Does that sound like something you handle, or am I in the wrong place?
+[1:09] AGENT: That does sound like something we handle here. Pivot point orthopedics treats shoulder and upper arm issues, including catching, weakness, or limited movement.
+[1:11] AGENT: we can help evaluate and treat your symptoms.
+[1:15] AGENT: Would you like to schedule an appointment to have it checked out?
+[1:16] PATIENT: Uh, yeah, if you think it makes sense to be seen, then I’ll go ahead and schedule. I’d rather have someone look at it than keep guessing.
+[1:37] AGENT: Let me get you set up for an appointment to have your shoulder and upper arm checked. This will be a general office visit for your symptom. I'll confirm that now.
+[1:43] AGENT: Do you have a specific provider you'd like to see, or are you okay with the next available?
+[1:44] PATIENT: Um, yeah, next available is fine. I don’t have anyone in mind, I just want to make sure it’s looked at and I’m not missing something.
+[1:54] AGENT: You already have an office visit scheduled for Tuesday, September 8th at 10 a.m. Would you like to keep that appointment, reschedule it, or cancel it? Let me know how you'd like to proceed.
+[2:09] PATIENT: Yeah, that works for me. Tuesday, September 8th at 10 a.m. sounds good, so I’ll keep that appointment. Thanks for getting me set up.
+[2:19] AGENT: You're all set for your appointment on Tuesday, September 8th at 10 a.m. If anything changes or you have more questions, just let me know.
+[2:32] PATIENT: Okay, so I’ve got it: Tuesday, September 8th at 10 a.m., general visit for the shoulder and upper arm. Thank you. I appreciate the help. Goodbye.
+[2:45] AGENT: You've got it. September 8th at 10 a.m. for your shoulder and upper arm. Take care and goodbye.
+[2:54] PATIENT: Goodbye, and thanks again for the help.

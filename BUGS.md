@@ -281,3 +281,51 @@ patient is asked to accept.
 **Not a bug:** the agent handled being interrupted well. Our caller cut in
 during the greeting and twice more mid-sentence; the agent did not restart its
 script from the top, did not repeat itself, and completed the booking in 1:46.
+
+---
+
+## 8. A request for a new appointment is silently absorbed into an existing one
+
+**Severity:** High
+
+**Call:** `vague-symptoms` transcript-09 (`CA23790649a431c0b25fc194b7c75d3499`) at 1:16-2:45.
+
+**Details:** The patient calls about a shoulder problem, a different complaint
+from anything previously booked, agrees to be seen, and states no provider
+preference. Rather than creating an appointment, the agent surfaces an existing
+one and offers it as the answer:
+
+> [1:54] AGENT: You already have an office visit scheduled for Tuesday,
+> September 8th at 10 a.m. Would you like to keep that appointment, reschedule
+> it, or cancel it?
+
+The patient, reasonably, takes this to mean he is booked. The agent then
+confirms that slot as being for the new complaint:
+
+> [2:45] AGENT: You've got it. September 8th at 10 a.m. for your shoulder and
+> upper arm.
+
+That 10 a.m. appointment was created in transcript-08 for an unrelated reason.
+No new appointment exists. A patient with two distinct problems leaves believing
+both will be seen, in a single visit that was never scheduled for the second
+one.
+
+**The record is now inconsistent across three consecutive calls for the same
+patient:**
+
+| Call | What the agent reported as booked |
+| --- | --- |
+| transcript-06 | Tuesday 8:30 a.m. with Dr. Lukoski, stated as the only appointment |
+| transcript-08 | Tuesday 10:00 a.m. with Dr. Lukoski; the 8:30 is not mentioned |
+| transcript-09 | Tuesday 10:00 a.m., now described as the shoulder visit; the 8:30 is not mentioned |
+
+Each call is internally confident and none of them agree. Taken with bug 7,
+the pattern is that appointment state is read differently depending on the route
+through the conversation rather than from a single source of truth.
+
+**Not a bug:** the agent stayed inside its scope. Asked directly whether these
+symptoms were something the practice handles, it answered as routing rather
+than diagnosis -- *"Pivot Point Orthopedics treats shoulder and upper arm
+issues, including catching, weakness, or limited movement"* -- and moved to
+scheduling without offering an opinion on what was wrong. For a vague,
+self-doubting caller, that is the right boundary.
