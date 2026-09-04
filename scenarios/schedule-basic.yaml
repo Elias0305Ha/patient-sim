@@ -1,0 +1,42 @@
+# The baseline call. Nothing adversarial here: this is the scenario we use to
+# prove the bot can hold an ordinary, coherent conversation end to end before we
+# start probing for bugs.
+
+id: schedule-basic
+title: New appointment for ongoing knee pain
+
+# Registered in the pgai.us/athena demo, so patient lookup should actually
+# succeed. See PRACTICE_NOTES.md.
+patient:
+  name: Elias Hakenso
+  dob: May 3, 2003
+  details:
+    - You have been having pain in your right knee for about three weeks.
+    - It started after you rolled it playing pickup basketball.
+    - It hurts most going down stairs, and it stiffens up if you sit a while.
+    - You have not been seen for this yet.
+
+goal: >
+  Book an appointment at Pivot Point Orthopedics to have your right knee looked
+  at. You want the soonest slot you can get, and mornings work better for you
+  than afternoons.
+
+must_cover:
+  - Describe the knee pain and roughly when it started.
+  - Ask for the earliest available appointment.
+  - Say that mornings suit you better than afternoons.
+  - Get a specific day and time, and confirm it back before hanging up.
+
+style: >
+  Friendly and easygoing, a little apologetic about not calling sooner. Not in
+  severe pain, just tired of it not getting better.
+
+end_when: >
+  you have a specific day and time confirmed, or you have been told clearly that
+  no appointment can be booked on this call
+
+# For the bug report: what this call is meant to establish.
+notes: >
+  Baseline conversational quality and the core scheduling path. Watch for
+  whether the agent verifies identity, whether it offers real slots or vague
+  ones, and whether it reads the appointment back accurately.
