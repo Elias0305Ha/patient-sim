@@ -2,3 +2,4 @@ twilio
 websockets
 pyyaml
 python-dotenv
+requests
