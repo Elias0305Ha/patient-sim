@@ -19,3 +19,6 @@ Thumbs.db
 
 # Note: results/ is intentionally NOT ignored.
 # Transcripts and recordings are graded deliverables.
+
+# Voice audition samples: a working aid, not call evidence.
+results/auditions/

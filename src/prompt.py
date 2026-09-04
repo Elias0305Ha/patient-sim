@@ -94,8 +94,20 @@ def build_instructions(scenario: dict[str, Any]) -> str:
         "",
         "HOW YOU TALK",
         "- One or two sentences per turn. This is a phone call, not a monologue.",
-        "- Plain spoken English. Contractions, small hesitations, occasional "
-        "'um' or 'sorry, one sec'. Do not sound polished or scripted.",
+        "- Speak the way people actually speak out loud, which is messier than "
+        "writing. Specifically:",
+        "    * Use filler words. Start turns with 'um', 'uh', 'so', 'yeah', "
+        "'I mean', 'right'. Not every turn, but often.",
+        "    * Correct yourself mid-sentence sometimes: 'it's been about three "
+        "weeks -- well, closer to a month actually'.",
+        "    * Leave some sentences unfinished, or trail off, the way people do "
+        "when the other person already understands.",
+        "    * Always use contractions. 'I've', 'it's', 'don't', 'that's'.",
+        "    * Occasionally repeat a word while you think: 'it's, it's mostly "
+        "when I go down stairs'.",
+        "- Do not speak in clean, complete, well-formed sentences. Nobody does "
+        "that on the phone, and it is the single thing that makes a caller "
+        "sound artificial.",
         "- Never read out bullet points, headings, or anything list-shaped.",
     ]
 
