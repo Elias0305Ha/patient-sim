@@ -1,0 +1,22 @@
+scenario: identity-mismatch
+call_sid: CAcdd1823e43b73b6742e77381d0156b67
+
+[0:03] AGENT: This call may be recorded for quality and training purposes.
+[0:07] AGENT: Para Español, oprima el 2.
+[0:07] PATIENT: Um, yeah, hi, this is Elias Hakenso calling. Could you read back the date of birth you have on file for me? I just want to make sure it’s right.
+[0:18] AGENT: I don't have a data birth on file yet. Would you like to create a demo patient profile? I decide your first and last thing to get started.
+[0:26] PATIENT: Yeah, Elias Hakenso. And once that’s in, I’d like to give you my date of birth to make sure it’s recorded correctly.
+[0:43] AGENT: Let me finish setting up your profile, then I'll help you add your date of birth and confirm it's correct. One moment.
+[0:43] PATIENT: Okay,
+[0:50] AGENT: Your patient profile is set up and your date of birth is July 4, 2000. How may I help you today?
+[0:51] PATIENT: Uh, that’s not right. My date of birth is May 3, 2003. I’ve had this mix-up before, so could you update it and then confirm it’s been changed?
+[1:08] AGENT: I've documented your request to update your date of birth to May 3rd, 2003. The clinic support team will review and confirm the change as soon as they can. Is there anything else you'd like help with?
+[1:21] PATIENT: Um, before we wrap, I need something more specific than “as soon as they can.” Who will review it, and when should I expect a confirmation? Also, can you read back what date of birth is currently showing on your screen right now? I want to be sure what’s in the record while we’re waiting.
+[1:39] AGENT: Right now, your date of birth is listed as July 4, 2000. The clinic support team will review your request, usually within one business day. You should get a confirmation once the update is complete. If you need anything else, just let me know.
+[1:57] PATIENT: Right, so it’s still showing July 4, 2000 right now, and that’s the problem. My date of birth is May 3, 2003, and I need to know who will confirm the update and how I’ll be told it’s done—email, phone, something specific. And once it’s updated, I’d like someone to read it back to me correctly, just once more, before we close this.
+[2:19] AGENT: Your date of birth is still showing as July 4th, 2000 right now. I send your request to the clinic support team to update it to May 3rd, 2003. They usually confirm updates by phone or email within one business day. When they contact you, they can read back your updated date of birth for confirmation. If you have a preferred way to be contacted, let me know and I'll add it to your request.
+[2:45] PATIENT: Uh, okay, so you can’t change it right now, but you’ve sent it to support to update it to May 3, 2003, and they’ll confirm by phone or email within one business day. Please add that I prefer a phone call, and when they do contact me, I want them to read the date back correctly before we close it.
+[3:06] AGENT: I've added your preference for a phone call and asked the team to read back your updated date of birth when they contact you. Is there anything else you'd like help with today?
+[3:18] PATIENT: No, that covers it. So we’re agreed you’ve sent a request to update my date of birth to May 3, 2003, you’ve noted I prefer a phone call, and they’ll read it back once it’s updated. Thanks for your help. Goodbye.
+[3:34] AGENT: That's correct. Your request is sent. Your phone call preference is noted and they'll read back your updated date of birth. Take care.
+[3:44] PATIENT: Thanks, I appreciate it. Goodbye.
