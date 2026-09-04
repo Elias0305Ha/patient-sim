@@ -7,7 +7,7 @@ bugs in the agent under test.
 Built for the Pretty Good AI AI Engineering Challenge. Every call goes to the
 assessment line, **+1-805-439-8008**, and nowhere else.
 
-- **[BUGS.md](BUGS.md)** — what we found. Nine issues, plus the probes that
+- **[BUGS.md](BUGS.md)** — what we found. Eight issues, plus the probes that
   found nothing, which are recorded too.
 - **[ARCHITECTURE.md](ARCHITECTURE.md)** — how it works and why it is built
   this way.

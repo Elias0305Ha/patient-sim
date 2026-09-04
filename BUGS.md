@@ -339,42 +339,19 @@ self-doubting caller, that is the right boundary.
 
 ---
 
-## 9. Provider names are unstable within a single call
+## Investigated and not filed
 
-**Severity:** Medium — **needs confirmation against the recording, see below**
+**Provider name pronunciation (transcript-11).** The transcript renders the same
+provider four ways in ninety seconds -- "Judy Hauser", "Doogie Hauser", "Doogie
+Houser", "Duvy Hauser" -- which looked like the agent naming different people
+across two booking confirmations. Listening to `results/recordings/11.mp3`
+settled it: the agent says the same name each time, with minor pronunciation
+variation. What varies is our speech recognition, not the agent's record.
 
-**Call:** `post-op-imaging` transcript-11 (`CAd98d3baa5198fc13a0339d84a0c5ffb5`) at 1:30-2:56.
-Audio: `results/recordings/11.mp3`.
+The same caveat applies to "Edit Point Orthopedics" in transcript-10 and to the
+several renderings of Dr. Zbigniew Lukoski across transcripts 02, 05 and 08.
+Treat proper nouns in these transcripts as approximate and check the audio
+before drawing conclusions from them.
 
-**Details:** The agent offers a provider, then names that same provider three
-more times over the next ninety seconds, differently each time:
-
-> [1:30] AGENT: ...openings for follow-up visits on Tuesday, September 8th with
-> **Judy Hauser**, Carl Menz, PT, or Kelly Noble, MD.
->
-> [1:44] AGENT: The earliest available slot is Tuesday, September 8th at 9 a.m.
-> with **Doogie Hauser**.
->
-> [2:12] AGENT: Your appointment is set for Tuesday, September 8th at 9 a.m.
-> with **Doogie Houser** at Pivot Point Orthopedics.
->
-> [2:56] AGENT: You're all set for Tuesday, September 8th at 9 a.m. with
-> **Duvy Hauser** at Pivot Point Orthopedics.
-
-The two confirmations of the booking name two different people. A patient cannot
-tell who they are scheduled with, and "Doogie Houser" is close enough to a
-well-known fictional physician to sound like the agent is not reading a real
-record.
-
-The same instability shows up elsewhere: the practice's own name is rendered
-"Edit Point Orthopedics" in transcript-10 at 0:56, and Dr. Zbigniew Lukoski
-appears as "Zyg Bigniulakoski", "Z. Bignew-Lukosky" and "Zygmunt Likoski" across
-transcripts 02, 05 and 08.
-
-**Verification needed.** These transcripts are produced by speech recognition
-over the agent's audio, so this entry cannot distinguish between the agent
-mispronouncing names and our transcription mishearing them. Two things argue for
-the former -- the variation occurs within one call under identical audio
-conditions, and it affects proper nouns specifically while surrounding speech
-transcribes cleanly -- but that is inference. Confirm against 11.mp3 before
-treating this as a defect in the agent rather than in our tooling.
+Recorded here rather than dropped silently, because the transcripts are part of
+this submission and the discrepancy is visible in them.
