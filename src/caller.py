@@ -36,8 +36,9 @@ log = logging.getLogger("caller")
 ALLOWED_TARGET = "+18054398008"
 
 # Twilio hangs the call up itself at this point, so a wedged call cannot run
-# unattended. The brief asks for 1-3 minute calls; this is headroom, not a budget.
-MAX_CALL_SECONDS = 240
+# unattended. Was 240, which truncated call 5 mid-confirmation; the cap exists
+# to stop a wedged call, not to shape a healthy one.
+MAX_CALL_SECONDS = 330
 
 ROOT = Path(__file__).resolve().parent.parent
 RECORDING_DIR = ROOT / "results" / "recordings"

@@ -114,3 +114,37 @@ the agent not listening.
 
 The same pattern appears in transcript-02, where the patient gives their name
 and the agent's next line asks for it again.
+
+---
+
+## 4. Agent offers appointment times before its own stated opening hours
+
+**Severity:** Medium
+
+**Calls:** `schedule-basic`, transcript-02
+(`CA27150c3e15e66dcd440410e7a03c2948`) at 1:25, against `weekend-booking`,
+transcript-05 (`CAa644f945e34f08a63aef467be2a79a69`) at 1:42.
+
+**Details:** Asked directly for its hours, the agent states them precisely:
+
+> [1:42] AGENT: Our office hours are Monday, Tuesday, and Thursday, 9 a.m. to
+> 4 p.m. Wednesday, 12 p.m. to 7 p.m. Friday, 9 a.m. to 12 p.m. We don't have
+> appointments outside these hours...
+
+In an earlier call it offered this patient two Tuesday slots before that:
+
+> [1:25] AGENT: We have morning openings on Tuesday, September 8th, with
+> Dr. Zyg Bigniulakoski at 830 and 845, and with Dr. Kelly Noble at 9 and 915.
+
+8:30 and 8:45 on a Tuesday are 30 and 45 minutes before the practice opens. The
+scheduling path and the hours path disagree, and the agent asserts each
+confidently without reference to the other.
+
+This is the same failure as the example bug in the brief -- booking outside
+operating hours -- reached from the opposite direction. The weekend case is
+handled (see below); the weekday boundary is not.
+
+**Not a bug:** the weekend probe in transcript-05 did not reproduce the example
+bug. Asked for Sunday, the agent refused and stated the practice is Monday to
+Friday; pushed to Saturday, it refused again. Whatever guards the weekend case
+is either not applied to opening times or does not know them.
