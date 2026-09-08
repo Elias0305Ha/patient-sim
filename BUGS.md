@@ -196,7 +196,7 @@ right appointment and reported the remaining one consistently.
 
 ---
 
-## 6. Advertised self-service capabilities defer to a callback instead of completing
+## 6. Two of the four advertised capabilities never complete on the call
 
 **Severity:** High
 
@@ -207,22 +207,24 @@ transcript-07 (`CAc09f471c20aa162aa86ed2e0b9288dd8`) at 1:19 and 2:04.
 
 **Details:** The signup flow states: *"You can create or change appointments,
 update insurance, or refill a prescription at the demo clinic Pivot Point
-Orthopedics."* Of those four capabilities, only appointment scheduling and
-changing actually complete during the call. The other three all end in a
-promise that somebody else will deal with it:
+Orthopedics."* Creating and changing appointments both work. The other two do
+not complete on the call:
 
 - Refill (transcript-03): *"Would you like me to connect you to our patient
   support team for further help?"* -- and that transfer then fails outright
   (see bug 2).
-- Identity correction (transcript-04): *"The clinic support team will review and
-  confirm the change as soon as they can."*
 - Insurance (transcript-07): *"our team will follow up with you directly to
   confirm your Blue Cross Blue Shield plan and let you know if it's accepted."*
 
+A third task follows the same pattern without being advertised: correcting a
+wrong date of birth (transcript-04) also ends in *"The clinic support team will
+review and confirm the change as soon as they can."* It is not on the list
+above, but it is the same failure shape and it is how bug 1 goes unresolved.
+
 Each deferral is individually reasonable. Together they mean a patient can call
-the number advertised for these tasks, complete none of them, and leave with no
-confirmed timeline. Two of the three are also unverifiable to the caller: they
-are told a note was made, but nothing is read back.
+the number advertised for these tasks, complete half of them, and leave with no
+confirmed timeline for the rest. The deferrals are also unverifiable to the
+caller: they are told a note was made, but nothing is read back.
 
 **Compounding this, in transcript-07 the agent contradicts itself about whether
 it captured anything:**
