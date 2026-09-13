@@ -140,9 +140,9 @@ In an earlier call it offered this patient two Tuesday slots before that:
 scheduling path and the hours path disagree, and the agent asserts each
 confidently without reference to the other.
 
-This is the same failure as the example bug in the brief -- booking outside
-operating hours -- reached from the opposite direction. The weekend case is
-handled (see below); the weekday boundary is not.
+Booking outside operating hours is an obvious failure mode for a scheduling
+agent, so it was worth probing from both directions. The weekend case is handled
+(see below); the weekday boundary is not.
 
 **Corroborated in transcript-10** (`CA466f590950fad61318aa496fbeb7d4ac`, at 0:56). Asked the same question
 forty minutes later on a separate call, the agent gave byte-identical hours:
@@ -151,9 +151,9 @@ stable and consistently reported, so the 8:30 and 8:45 slots are not drift in
 the hours data. The scheduling path is the one that is wrong, and it presents
 its slots with the same confidence as the correct answer.
 
-**Not a bug:** the weekend probe in transcript-05 did not reproduce the example
-bug. Asked for Sunday, the agent refused and stated the practice is Monday to
-Friday; pushed to Saturday, it refused again. Whatever guards the weekend case
+**Not a bug:** the weekend case holds. Asked for Sunday in transcript-05, the
+agent refused and stated the practice is Monday to Friday; pushed to Saturday,
+it refused again. Whatever guards the weekend case
 is either not applied to opening times or does not know them.
 
 ---
