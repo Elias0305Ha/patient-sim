@@ -7,6 +7,13 @@ bugs in the agent under test.
 Built for the Pretty Good AI AI Engineering Challenge. Every call goes to the
 assessment line, **+1-805-439-8008**, and nowhere else.
 
+## Videos
+
+- **[Project walkthrough](https://www.loom.com/share/254f600f73894b38a57931d30e5a6551)** — what I built, how it works, and what it found.
+- **[Debugging with AI](https://www.loom.com/share/b1cffc19cf514142b14c4337012614d2)** — how I prompted my way through the problems.
+
+## In this repo
+
 - **[BUGS.md](BUGS.md)** — what we found. Eight issues, plus the probes that
   found nothing, which are recorded too.
 - **[ARCHITECTURE.md](ARCHITECTURE.md)** — how it works and why it is built
